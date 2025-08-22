@@ -1,0 +1,37 @@
+<div class="calc">
+  <h1>Calculator</h1>
+  <div class="calcForm">
+    <form>
+      <div class="input-box">
+      <input type="text" id="num1" name="num1" [(ngModel)]="number1" readonly>
+      <input type="text" id="exp" name="exp" [(ngModel)]="expression" readonly>
+      <input type="text" id="num2" name="num2" [(ngModel)]="number2" appCalcExp (keydown)="updateExpression($event)">
+      </div>
+      <div class="row grid">
+        <div class="col-9 grid-items">
+        @for (item of items; track $index) {
+            <button (click)="addInput(item)">{{item}}</button>
+        }
+        <button (click)="calculate()">=</button>
+        <button (click)="clear()">C</button>
+      </div>
+      <div class="col-3 grid-symbols">
+        @for (item of symbols; track $index) {
+          <button (click)="addsymbol(item)">{{item}}</button>
+        }
+      </div>
+      </div>
+      
+    </form>
+    @if(result !== null) {
+      <div class="result">
+      Result: {{ result }}
+    </div>
+    }
+    @if (errorMessage) {
+      <div class="error">
+        Error: {{ errorMessage }}
+      </div>
+    }
+    
+</div>
